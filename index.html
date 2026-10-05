@@ -1,6 +1,73 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8">
-    </head>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Timer / Stopwatch</title>
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <main class="card">
+    <div class="tabs" role="tablist">
+      <button type="button" class="tab is-active" id="stopwatchTab" role="tab" aria-selected="true">Stopwatch</button>
+      <button type="button" class="tab" id="timerTab" role="tab" aria-selected="false">Timer</button>
+    </div>
+
+    <!-- Stopwatch panel -->
+    <section id="stopwatchPanel" class="panel">
+      <div class="display" id="swDisplay">00:00<span class="display__ms">.00</span></div>
+
+      <div class="controls">
+        <button type="button" class="btn btn--primary" id="swStartPause">Start</button>
+        <button type="button" class="btn" id="swLap" disabled>Lap</button>
+        <button type="button" class="btn btn--ghost" id="swReset">Reset</button>
+      </div>
+
+      <ol class="laps" id="lapList"></ol>
+    </section>
+
+    <!-- Timer panel -->
+    <section id="timerPanel" class="panel" hidden>
+      <div class="ring-wrap">
+        <svg class="ring" viewBox="0 0 200 200">
+          <circle class="ring__bg" cx="100" cy="100" r="90"></circle>
+          <circle class="ring__progress" id="timerRing" cx="100" cy="100" r="90"></circle>
+        </svg>
+        <div class="display display--ring" id="timerDisplay">05:00</div>
+      </div>
+
+      <div class="presets" id="presetRow">
+        <button type="button" class="preset" data-mins="1">1m</button>
+        <button type="button" class="preset" data-mins="5">5m</button>
+        <button type="button" class="preset" data-mins="10">10m</button>
+        <button type="button" class="preset" data-mins="25">25m</button>
+      </div>
+
+      <div class="custom-input" id="customInputRow">
+        <label>
+          <input type="number" id="minInput" min="0" max="180" value="5" aria-label="Minutes" />
+          <span>min</span>
+        </label>
+        <label>
+          <input type="number" id="secInput" min="0" max="59" value="0" aria-label="Seconds" />
+          <span>sec</span>
+        </label>
+      </div>
+
+      <div class="controls">
+        <button type="button" class="btn btn--primary" id="timerStartPause">Start</button>
+        <button type="button" class="btn btn--ghost" id="timerReset">Reset</button>
+      </div>
+    </section>
+
+    <p class="hint">Space to start/pause &middot; L to lap &middot; R to reset</p>
+  </main>
+
+  <script src="js/app.js"></script>
+</body>
 </html>
